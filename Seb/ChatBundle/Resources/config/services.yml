@@ -1,0 +1,6 @@
+# src/Seb/ChatBundle/Resources/config/services.yml
+
+services:
+    seb_chat.ajax:
+        class: Seb\ChatBundle\Ajax\SebAjax
+        arguments: [@logger,@doctrine.orm.entity_manager]

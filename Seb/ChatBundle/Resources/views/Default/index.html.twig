@@ -1,0 +1,64 @@
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('bundles/sebchat/css/chat.css') }}" type="text/css" media="all" />
+{% endblock %}
+
+{% block javascripts %}
+<script type="text/javascript" src="{{ asset('bundles/sebchat/js/jquery-1.11.0.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/sebchat/js/function.js') }}"></script>
+{% endblock %}
+
+<h1> STGS Messenger </h1>
+
+{# Truc bien crade pour les comptes #}
+<input id="account-seb" type="submit" value="seb" />
+<input id="account-jud" type="submit" value="jud" />
+
+
+{# Chat #}
+<div id='contour'>
+    <div id='chat'>
+        <div id='contenu'>
+
+        </div>
+        <form id='form-send' method='POST' action='{{path('seb_chat_send')}}'>
+            <textarea id='input'>
+            </textarea>
+            <input id='form-submit' type='submit' value='Send that shit'/> 
+        </form>
+    </div>
+    <div id='contact'>
+        <div class='show-contact'>
+            Sébastien
+        </div>
+        <div class='show-contact'>
+            Orel
+        </div>
+        <div class='show-contact'>
+            Jud
+        </div>
+        <div class='show-contact'>
+            Jérôme
+        </div>
+    </div>
+
+</div>
+
+{# Meme Box #}
+<div id='meme-box' >
+    <span class='meme'>
+        <img src='http://img1.wikia.nocookie.net/__cb20130511222907/villains/images/d/d2/Insanity_Wolf.jpg' alt='Insanity Wolf' />
+    </span>
+    <span class='meme'>
+        <img src='https://i.imgflip.com/1bhk.jpg' alt='Success Jud' />
+    </span>
+    <span class='meme'>
+        <img src='http://memney.com/files/2013/04/bad-luck-brian-meme-template-300x300.jpg' alt='Bad luck brian' />
+    </span>
+    <span class='meme'>
+        <img src='http://fillyourboots.org/wp-content/uploads/2013/08/scumbag-steve-meme-template.jpg' alt='Scumbag Steve'/>
+    </span>
+    <span class='meme'>
+        <img src='http://cdn.memegenerator.net/instances/250x250/9662721.jpg' alt='Yao Ming' />
+    </span>
+
+</div>

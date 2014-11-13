@@ -1,0 +1,7 @@
+parameters:
+#    seb_tracker.example.class: Seb\Bundle\TrackerBundle\Example
+
+services:
+#    seb_tracker.example:
+#        class: %seb_tracker.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

@@ -1,0 +1,90 @@
+#contour {
+    border: 1px solid black;
+    height: 440px;
+    width: 840px;
+    margin: auto;
+    padding: 10px 10px;
+    -webkit-border-radius: 5px;
+    background: -webkit-linear-gradient(top, rgba(252,255,244,1) 0%,rgba(223,229,215,1) 40%,rgba(179,190,173,1) 100%); 
+}
+
+#contact {
+    border: 1px solid black;
+    height: 300px;
+    width: 20%;
+    float: right;
+
+    -webkit-border-radius: 5px;
+
+}
+
+#meme-box {
+    border: 1px solid black;
+    margin: auto;
+    padding: 15px 10px;
+    -webkit-border-radius: 5px;
+    background: -webkit-linear-gradient(top, rgba(252,255,244,1) 0%,rgba(223,229,215,1) 40%,rgba(179,190,173,1) 100%); 
+    width: 840px;
+}
+
+#meme-box .meme img {
+    height: 162px;
+    width: 162px;
+    border: 1px solid black;
+}
+
+#contact .show-contact:nth-child(odd){
+    background: #F2F2F2;
+}
+
+#contact .show-contact:nth-child(even){
+    background: #5E94FF;
+}
+
+#contact .show-contact{
+    font-family: arial;
+    font-weight: bold;
+    font-size: 11px;
+    padding: 5px 5px;
+}
+
+#chat {
+    border: 1px solid black;
+    width: 75%;
+    float: left;
+    padding: 10px 10px;
+    -webkit-border-radius: 5px;
+}
+
+#chat #contenu {
+    border: 1px solid black;
+    height: 300px;
+    font-family: arial;
+    margin-bottom: 5px;
+    overflow: auto;
+
+    -webkit-border-radius: 5px;
+    background: white;
+}
+
+#chat #input {
+    border: 1px solid black;
+    font-family: arial;
+    margin-top: 10px;
+    -webkit-border-radius: 5px;
+    background: white;
+    margin: 1px 0px; 
+    height: 68px; 
+    width: 628px;
+    resize: none;
+
+}
+
+#chat #input textarea{
+
+}
+
+img {
+    max-width: 350px;
+    max-height: 250px;
+}

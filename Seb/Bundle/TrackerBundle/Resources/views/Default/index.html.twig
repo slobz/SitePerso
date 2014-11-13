@@ -1,0 +1,35 @@
+{% extends "SebTrackerBundle:Default:layout.html.twig" %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <h2> Suivis </h2>
+    </div>
+    <div class="row row-padding">
+        <div class="col-md-2"></div>
+        <div class="col-md-6">
+            <table id="tracked_list">
+            {% if items is empty %}
+                <p> Aucun élements suivi! </p>
+            {% else %}
+                {% for item in items %}
+                <tr>
+                    <td rowspan="3">
+                        <img class="img-thumbnail" src='{{ item.description}}' height='100' width='100' alt='visuel'/>
+                    </td>  
+                    <td> {{ item.name }} </td>
+                </tr>    
+                <tr>    
+                    <td> {{ item.dateRelease|date("m/d/Y")  }}</td> 
+                </tr>
+                <tr>    
+                    <td> {{ item.type }}</td> 
+                </tr>
+                {% endfor %}
+            {%endif%}
+            </table>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "SebTrackerBundle:Default:layout.html.twig" %}
+
+{% block body %}
+
+<div class="container">
+
+    <h2> Albums a écouter </h2>
+
+{# Affichage des albums a écouter #}
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th> # </th>
+                        <th> Nom</th>
+                        <th> Artiste</th>
+                        <th> Ecouté  {{ items_not_listened }}/{{ items_count }}</th>
+                    </tr>
+                </thead>
+{% for item in items %}
+                <tr {%if item.listened == false %} class="danger" {% else %} class="success" {% endif %}>
+                    <td> {{ loop.index }} </td>
+                    <td> {{ item.name }} </td>
+                    <td> {{ item.artist  }}</td> 
+                    <td> 
+            {% if item.listened %}
+            {% else %}
+                        <form method="post" action='music/update'>
+                            <input type="hidden" name='id' value="{{loop.index}}"/>
+                            <input type="submit" class="btn btn-success" role="button" value="J'ai écouté!"/> 
+                        </form>
+            {% endif %}    
+                    </td> 
+                </tr>
+{% endfor %}
+            </table>
+        </div>
+    </div>
+    <div class="col-md-1"></div>
+</div>
+{% endblock %}
