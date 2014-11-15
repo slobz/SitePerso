@@ -1,0 +1,3 @@
+seb_compte_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: SebCompteBundle:Default:index }

@@ -1,0 +1,40 @@
+{% extends "SebTrackerBundle:Default:layout.html.twig" %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <h2> Compte </h2>
+        </div>
+        <div class="row row-padding">
+            <div class="col-md-12">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th> Date </th>
+                            <th> Opération </th>
+                            <th> Type</th>
+                            <th> Montant</th>
+                        </tr>
+                    </thead>
+                    {% for operation in operations %}
+                        <tr {%if operation.debit == true %} class="danger" {% else %} class="success" {% endif %} >
+                            <td> {{operation.date|date('d/m/Y')}}    </td>
+                            <td> {{operation.libelle}} </td>
+                            <td> {{operation.type}}    </td>
+                            <td> {{operation.montant}}€ </td>
+                        </tr>
+                    {% endfor%}   
+                    <tfoot>
+                    <td colspan="3"></td>
+                    <td>Total: <strong> xxx </strong></td>
+                    </tfoot>
+                </table>
+                    
+                    <form>
+                        
+                    </form>  
+                    
+            </div>
+        </div>
+    </div>
+{% endblock %}

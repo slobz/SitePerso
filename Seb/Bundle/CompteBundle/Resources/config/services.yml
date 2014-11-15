@@ -1,0 +1,7 @@
+parameters:
+#    seb_compte.example.class: seb\Bundle\CompteBundle\Example
+
+services:
+#    seb_compte.example:
+#        class: %seb_compte.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
