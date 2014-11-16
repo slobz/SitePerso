@@ -45,9 +45,7 @@ class DefaultController extends Controller {
                 $stats = new Stats();
                 $mois = $date->format('m');
                 $annee = $date->format('Y');
-                // Montant negatif si il s'agit d'un debit
-                $montant = $operation->getDebit() == true? -$operation->getMontant():$operation->getMontant();
-                
+                $montant = $operation->getMontant();
                 
                 // On regarde si le mois/année existe
                 $repo2 = $this->getDoctrine()->getRepository('SebCompteBundle:Compte\Stats');
@@ -56,11 +54,11 @@ class DefaultController extends Controller {
                 if (empty($item)) {
                     $stats->setMois($mois);
                     $stats->setAnnee($annee);
-                    $stats->setMontant($montant);
+                    $stats->setMontant($montant,$operation->getDebit());
                     $em->persist($stats);
                     $em->flush();
                 } else {
-                    $item->setMontant($item->getMontant() + $montant);
+                    $item->setMontant($montant,$operation->getDebit());
                     $em->flush();
                 }
             }

@@ -38,10 +38,17 @@ class Stats
     /**
      * @var integer
      *
-     * @ORM\Column(name="montant", type="integer")
+     * @ORM\Column(name="total_debit", type="integer")
      */
-    private $montant;
-
+    private $totalDebit = 0;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="total_credit", type="integer")
+     */
+    private $totalCredit = 0;
+    
 
     /**
      * Get id
@@ -100,25 +107,64 @@ class Stats
     }
 
     /**
-     * Set montant
+     * Set totalDebit
      *
-     * @param integer $montant
+     * @param integer $totalDebit
      * @return Stats
      */
-    public function setMontant($montant)
+    public function setTotalDebit($totalDebit)
     {
-        $this->montant = $montant;
+        $this->totalDebit = $totalDebit;
 
         return $this;
     }
 
     /**
-     * Get montant
+     * Get totalDebit
      *
      * @return integer 
      */
-    public function getMontant()
+    public function getTotalDebit()
     {
-        return $this->montant;
+        return $this->totalDebit;
     }
+
+    /**
+     * Set totalCredit
+     *
+     * @param integer $totalCredit
+     * @return Stats
+     */
+    public function setTotalCredit($totalCredit)
+    {
+        $this->totalCredit = $totalCredit;
+
+        return $this;
+    }
+
+    /**
+     * Get totalCredit
+     *
+     * @return integer 
+     */
+    public function getTotalCredit()
+    {
+        return $this->totalCredit;
+    }
+    
+    /**
+     * Recourci pour setTotalCredit/setTotalDebit
+     * @param type $montant
+     * @param type $debit
+     */
+    public function setMontant($montant,$debit){
+        
+        if($debit){
+            $this->totalDebit+=$montant;
+        }else{
+            $this->totalCredit+=$montant;
+        }
+        
+    }
+    
 }
