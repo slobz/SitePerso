@@ -26,14 +26,18 @@
                     {% endfor%}   
                     <tfoot>
                     <td colspan="3"></td>
-                    <td>Total: <strong> xxx </strong></td>
+                    <td>Total : <strong> xxx </strong></td>
                     </tfoot>
                 </table>
-                    
-                    <form>
-                        
-                    </form>  
-                    
+                <div id="add-operation">
+                    <!-- Formulaire ajout -->
+                    <h2> Ajout </h2>
+                    <form  method="post" {{ form_enctype(form) }}>
+                        {{form_widget(form)}}
+                        <input type="submit" class="btn btn-primary" />
+                    </form>
+                </div>
+
             </div>
         </div>
     </div>
