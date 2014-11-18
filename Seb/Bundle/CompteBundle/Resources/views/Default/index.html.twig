@@ -5,6 +5,12 @@
         <div class="row">
             <h2> Compte </h2>
         </div>
+        <!-- Affichage par mois -->
+        <div class="btn-group">
+            {% for statss in stats2 %}
+                <button type="button" class="btn btn-default"> {{statss.mois}}/{{statss.annee}}</button>
+            {% endfor %}
+        </div>
         <div class="row row-padding">
             <div class="col-md-12">
                 <table class="table table-bordered">
@@ -25,8 +31,10 @@
                         </tr>
                     {% endfor%}   
                     <tfoot>
-                    <td colspan="3"></td>
-                    <td>Total : <strong> xxx </strong></td>
+                    <td></td>
+                    <td class="danger" >Total debit: <strong> {{stats.totalDebit}} </strong></td>
+                    <td class="success">Total crédit: <strong> {{stats.totalCredit}} </strong></td>
+                    <td>Total <strong> {{stats.totalCredit - stats.totalDebit}}</td>
                     </tfoot>
                 </table>
                 <div id="add-operation">

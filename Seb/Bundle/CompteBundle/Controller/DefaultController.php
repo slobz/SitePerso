@@ -1,7 +1,9 @@
 <?php
 
-// @todo: Catégoris pour le type
+// @todo: Catégories pour le type
 // @todo: Table stats + Service pour recup le mois en fonction de la date
+// @todo: callback pour update de stats?
+// @todo: definir extension twig pour affichage date
 
 namespace Seb\Bundle\CompteBundle\Controller;
 
@@ -16,8 +18,13 @@ class DefaultController extends Controller {
         $repo = $this->getDoctrine()->getRepository('SebCompteBundle:Compte\Operation');
         $items = $repo->findAll();
 
+        // On recupere les stats 
+        $repo = $this->getDoctrine()->getRepository('SebCompteBundle:Compte\Stats');
+        $items2 = $repo->findOneBy(array('mois' => 11, 'annee' => 2014));
 
-
+        // on recupere tous les mois
+        $items3 = $repo->findAll();
+        
         // Formulaire ajout operation
         $operation = new Operation();
         $form_builder = $this->createFormBuilder($operation);
@@ -46,19 +53,19 @@ class DefaultController extends Controller {
                 $mois = $date->format('m');
                 $annee = $date->format('Y');
                 $montant = $operation->getMontant();
-                
+
                 // On regarde si le mois/année existe
                 $repo2 = $this->getDoctrine()->getRepository('SebCompteBundle:Compte\Stats');
                 $item = $repo2->findOneBy(array('mois' => $mois, 'annee' => $annee));
-                
+
                 if (empty($item)) {
                     $stats->setMois($mois);
                     $stats->setAnnee($annee);
-                    $stats->setMontant($montant,$operation->getDebit());
+                    $stats->setMontant($montant, $operation->getDebit());
                     $em->persist($stats);
                     $em->flush();
                 } else {
-                    $item->setMontant($montant,$operation->getDebit());
+                    $item->setMontant($montant, $operation->getDebit());
                     $em->flush();
                 }
             }
@@ -66,7 +73,9 @@ class DefaultController extends Controller {
         }
 
         return $this->render('SebCompteBundle:Default:index.html.twig', array('operations' => $items,
-                    'form' => $form->createView()));
+                    'form' => $form->createView(),
+                    'stats' => $items2,
+                    'stats2'=> $items3));
     }
 
 }
