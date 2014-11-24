@@ -1,7 +1,6 @@
 <?php
 
 // @todo: Catégories pour le type
-// @todo: Table stats + Service pour recup le mois en fonction de la date
 // @todo: callback pour update de stats?
 // @todo: definir extension twig pour affichage date
 
@@ -13,14 +12,25 @@ use Seb\Bundle\CompteBundle\Entity\Compte\Stats;
 
 class DefaultController extends Controller {
 
-    public function indexAction() {
+    public function indexAction($month) {
+        
+        if(empty($month))
+            $month = 11;
+        
         // On recupère les opérations
         $repo = $this->getDoctrine()->getRepository('SebCompteBundle:Compte\Operation');
-        $items = $repo->findAll();
+        //$items = $repo->findBy(array('Month(date)' => $month));
 
+        $qb = $repo->createQueryBuilder('o')
+                ->where("MONTH(o.date) = ?1")
+                ->setParameter('1',$month)
+                ->getQuery();
+            
+        $items = $qb->getResult();  
+        
         // On recupere les stats 
         $repo = $this->getDoctrine()->getRepository('SebCompteBundle:Compte\Stats');
-        $items2 = $repo->findOneBy(array('mois' => 11, 'annee' => 2014));
+        $items2 = $repo->findOneBy(array('mois' => $month, 'annee' => 2014));
 
         // on recupere tous les mois
         $items3 = $repo->findAll();

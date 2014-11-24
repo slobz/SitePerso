@@ -8,7 +8,7 @@
         <!-- Affichage par mois -->
         <div class="btn-group">
             {% for statss in stats2 %}
-                <button type="button" class="btn btn-default"> {{statss.mois}}/{{statss.annee}}</button>
+                <a href="{{statss.mois}}" role="button" class="btn btn-default"> {{statss.mois}}/{{statss.annee}}</a>
             {% endfor %}
         </div>
         <div class="row row-padding">
@@ -22,20 +22,29 @@
                             <th> Montant</th>
                         </tr>
                     </thead>
-                    {% for operation in operations %}
-                        <tr {%if operation.debit == true %} class="danger" {% else %} class="success" {% endif %} >
-                            <td> {{operation.date|date('d/m/Y')}}    </td>
-                            <td> {{operation.libelle}} </td>
-                            <td> {{operation.type}}    </td>
-                            <td> {{operation.montant}}€ </td>
+                    {% if operations is empty %}
+                        <tr>
+                            <td class="text-center" colspan='4'> Aucune opérations réalisées ce mois-ci </td>
                         </tr>
-                    {% endfor%}   
-                    <tfoot>
-                    <td></td>
-                    <td class="danger" >Total debit: <strong> {{stats.totalDebit}} </strong></td>
-                    <td class="success">Total crédit: <strong> {{stats.totalCredit}} </strong></td>
-                    <td>Total <strong> {{stats.totalCredit - stats.totalDebit}}</td>
-                    </tfoot>
+                    {% else %}    
+                        {% for operation in operations %}
+                            <tr {%if operation.debit == true %} class="danger" {% else %} class="success" {% endif %} >
+                                <td> {{operation.date|date('d/m/Y')}}    </td>
+                                <td> {{operation.libelle}} </td>
+                                <td> {{operation.type}}    </td>
+                                <td> {{operation.montant}}€ </td>
+                            </tr>
+                        {% endfor%}  
+                            <tr>
+                                <td colspan="4"></td>
+                            </tr>
+                        <tfoot>
+                            <td></td>
+                            <td class="danger" >Total debit: <strong> {{stats.totalDebit}} </strong></td>
+                            <td class="success">Total crédit: <strong> {{stats.totalCredit}} </strong></td>
+                            <td>Total <strong> {{stats.totalCredit - stats.totalDebit}}</td>
+                        </tfoot>
+                    {% endif %}
                 </table>
                 <div id="add-operation">
                     <!-- Formulaire ajout -->
