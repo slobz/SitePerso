@@ -18,7 +18,7 @@
             <div class="thumbnail">
                 <a ng-click="collection.desc()" class="fleche previous" href="" ></a>
                 <a ng-click="collection.inc()" class="fleche next" href="" ></a>
-                <img  class="img-thumbnail" ng-src="{[{collection.product[collection.i].img_path}]}" alt="XIII" width="425px" height="310px"/>
+                <img  class="img-thumbnail" ng-src="{{collection.product[collection.i].img_path}}" alt="XIII" width="425px" height="310px"/>
                 <div class="caption">
                     <h3 class="titre"> 
                                 {{collection.product[collection.i].titre}}  
