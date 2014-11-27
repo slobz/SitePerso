@@ -1,0 +1,4 @@
+services:
+#    seb_album.example:
+#        class: Seb\Bundle\AlbumBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
